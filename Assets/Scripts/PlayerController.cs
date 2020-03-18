@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody rb;
+    private float move = 0;
+
+    public Rigidbody2D rb;
     public float moveSpeed = 10f;
 
     private Vector2 movement;
@@ -15,15 +17,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Move");
 
         movement = value.Get<Vector2>();
+        move = movement.x;
 
-        rb.AddForce(transform.right * 5000 * movement.x);
+        //move x
+        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
     }
 
     void OnJump()
     {
-        Debug.Log("Jump");
-
-        rb.AddForce(transform.up * 25000);
+;
     }
 
 }
